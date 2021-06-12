@@ -8,4 +8,9 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.LoadLevel(1);
     }
+
+    public void QuitButtonPressed()
+    {
+        Application.Quit();
+    }
 }
