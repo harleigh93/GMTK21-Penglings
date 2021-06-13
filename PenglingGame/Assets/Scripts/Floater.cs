@@ -20,7 +20,7 @@ public class Floater : MonoBehaviour
         float waterHeight = water.transform.position.y;
         if (transform.position.y < waterHeight)
         {
-            Vector3 force = new Vector3(0, 3, 0);
+            Vector3 force = new Vector3(0, 6, 0);
             rb.AddForce(force);
         }
     }

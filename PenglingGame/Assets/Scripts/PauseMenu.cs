@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused = true;
 
     public GameObject pauseMenuUI;
+    public GameObject startingText;
 
     void Start()
     {
-        //Unpause the game if it's still paused
-        Time.timeScale = 1f;
+        //pause the game for starting text
+        Time.timeScale = 0f;
     }
 
     // Update is called once per frame
@@ -49,5 +50,12 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void CloseStartingText()
+    {
+        startingText.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
     }
 }

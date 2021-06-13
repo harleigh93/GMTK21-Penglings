@@ -7,6 +7,7 @@ public class Player4DirectionalMovement : MonoBehaviour
     public float moveSpeed = 0.2f;
     public Rigidbody rb;
     public Animator animator;
+    public AudioSource jumpSound;
 
     Vector3 savedDirection;
     float currentSpeed = 0;
@@ -15,6 +16,19 @@ public class Player4DirectionalMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+
+    public float jumpForce = 2.0f;
+    public bool isGrounded;
+
+    public void Start()
+    {
+        rb.maxAngularVelocity = 1;
+    }
+
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+    }
 
     void Update()
     {
@@ -56,12 +70,24 @@ public class Player4DirectionalMovement : MonoBehaviour
             currentSpeed = 0;
         }
 
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(new Vector3(0,1,0) * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+            jumpSound.Play();
+        }
+
         if (currentSpeed >= 0.1)
         {
             float targetAngle = Mathf.Atan2(savedDirection.x, savedDirection.z) * Mathf.Rad2Deg;
             model.transform.rotation = Quaternion.Euler(0, targetAngle, 0);
             //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             // model.transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+
+        if (rb.velocity.magnitude > 3)
+        {
+            rb.velocity = rb.velocity.normalized * 3;
         }
 
         //animator.SetFloat("SavedHorizontal", savedDirection.x);
