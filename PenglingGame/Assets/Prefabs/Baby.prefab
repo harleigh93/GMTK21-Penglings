@@ -147,7 +147,6 @@ MonoBehaviour:
   rb: {fileID: 66590421}
   speed: 5
   followDistance: 2
-  gravity: -1
   model: {fileID: 4674978127646709384}
 --- !u!54 &66590421
 Rigidbody:

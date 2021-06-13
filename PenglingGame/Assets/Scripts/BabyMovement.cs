@@ -19,6 +19,7 @@ public class BabyMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        rb.maxAngularVelocity = 1;
     }
 
     void Update()
