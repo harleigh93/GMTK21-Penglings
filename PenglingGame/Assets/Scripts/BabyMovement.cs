@@ -7,24 +7,39 @@ public class BabyMovement : MonoBehaviour
     private GameObject player;
     private Vector3 playerPos;
     private Vector3 velocity;
+    public Rigidbody rb;
 
-    public float speed = 1;
+    public float speed = 2;
     public float followDistance = 1;
-    public float gravity = -1;
+
 
     public GameObject model;
-    public UnityEngine.AI.NavMeshAgent agent;
+
 
     void Start()
     {
-
         player = GameObject.Find("Player");
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        rb.maxAngularVelocity = 1;
     }
 
     void Update()
     {
         playerPos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        agent.destination = playerPos;
     }
+
+    void FixedUpdate()
+    {
+
+        if (Vector3.Distance(transform.position, playerPos) > followDistance)
+        {
+            transform.LookAt(playerPos);
+            rb.AddRelativeForce(Vector3.forward * speed, ForceMode.Force);
+        }
+
+        if (rb.velocity.magnitude > 3)
+        {
+            rb.velocity = rb.velocity.normalized * 3;
+        }
+    }
+
 }

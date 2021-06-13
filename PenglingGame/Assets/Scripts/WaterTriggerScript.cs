@@ -6,6 +6,7 @@ public class WaterTriggerScript : MonoBehaviour
 {
 
     AudioSource audio;
+    public GameObject splashParticle;
     private bool isPlaying = false;
 
     void Start()
@@ -20,6 +21,13 @@ public class WaterTriggerScript : MonoBehaviour
             isPlaying = true;
             audio.Play();
             StartCoroutine(reset());
+
+            //ContactPoint contact = collision.contacts[0];
+            //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 position = collision.transform.position;
+            //Quaternion rotation = Quaternion.Euler(position.x, position.y, position.z);
+            var newSplash = Instantiate(splashParticle, position, new Quaternion (0,0,0,0));
+            Destroy(newSplash, 1f);
         }
 
         if (collision.gameObject.name == "Player")
@@ -30,8 +38,8 @@ public class WaterTriggerScript : MonoBehaviour
 
     IEnumerator reset()
     {
-        //Wait for 2 seconds
-        yield return new WaitForSeconds(2);
+        //Wait for 1 second
+        yield return new WaitForSeconds(1);
         isPlaying = false;
     }
 

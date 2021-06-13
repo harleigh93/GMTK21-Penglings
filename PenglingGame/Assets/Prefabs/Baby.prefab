@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7839020993835050799}
   - component: {fileID: 66590421}
   - component: {fileID: 66590422}
-  - component: {fileID: 66590420}
+  - component: {fileID: 1212850423}
   m_Layer: 0
   m_Name: Baby
   m_TagString: Untagged
@@ -144,11 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e65b86295d6ddb41ad5931732c7a289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  rb: {fileID: 66590421}
+  speed: 5
   followDistance: 2
-  gravity: -10
   model: {fileID: 4674978127646709384}
-  agent: {fileID: 0}
 --- !u!54 &66590421
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,7 +156,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4674978127724182452}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.3
   m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -179,28 +178,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &66590420
-NavMeshAgent:
+--- !u!114 &1212850423
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4674978127724182452}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.5
-  m_BaseOffset: 0.9
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f354982d615f2bc43915c5656e3efba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 66590421}
+  displacementAmount: 1
 --- !u!1 &4674978128786488908
 GameObject:
   m_ObjectHideFlags: 0
