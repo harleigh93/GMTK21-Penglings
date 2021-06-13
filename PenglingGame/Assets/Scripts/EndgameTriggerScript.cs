@@ -9,7 +9,7 @@ public class EndgameTriggerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Baby")
         {
             endingText.SetActive(true);
             Time.timeScale = 0f;
