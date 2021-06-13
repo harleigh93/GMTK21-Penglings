@@ -6,7 +6,7 @@ public class FloatingPlatform : MonoBehaviour
 {
     float originalY;
 
-    public float floatStrength = 1;
+    public float floatStrength = 0.85f;
     public float speed = 1;
 
     void Start()
